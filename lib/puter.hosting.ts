@@ -13,14 +13,16 @@ export const getOrCreateHostingConfig = async (): Promise<HostingConfig | null> 
     try {
       const created = await puter.hosting.create(subdomain, "."); //. means current directory
 
-      return { subdomain: created.subdomain };
+      const record = { subdomain: created.subdomain };
+      await puter.kv.set(HOSTING_CONFIG_KEY, record);
+      return record;
     } catch (error) {
       console.warn(`Could not find subdomain: ${error}`);
       return null;
     }
   };
 
-export const uploadImageToHosting = async({hosting, url, projectId, label}: StoreHostedImageParam): Promise<HostedAsset | null> => {
+export const uploadImageToHosting = async({hosting, url, projectId, label}: StoreHostedImageParams): Promise<HostedAsset | null> => {
     if(!hosting || !url) return null;
 
     if(isHostedUrl(url)) return {url};
