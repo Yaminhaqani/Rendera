@@ -39,7 +39,7 @@ export default function Home() {
 
     //[newItem, ...prev] -> new item at beginning(first) called prepend
     //[...prev, newItem] -> new item at end(last) called append
-     setProjects((prev) => [newItem, ...prev]);
+     setProjects((prev) => [saved, ...prev]);
 
     navigate(`/visualizer/${newId}`,{
       state: {
