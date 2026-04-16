@@ -42,6 +42,7 @@ export default function Home() {
      setProjects((prev) => [saved, ...prev]);
 
     navigate(`/visualizer/${newId}`,{
+      //name must be 'state', special reserved key and other is 'replace', because this is how React Router is designed.
       state: {
         initialImage: saved.sourceImage,
         initialRendered: saved.renderedImage || null,
@@ -108,7 +109,7 @@ export default function Home() {
           <div className="projects-grid">
             {projects.map(({id, name, renderedImage, sourceImage, timestamp}) => (
 
-            <div className="project-card group">
+            <div key={id} className="project-card group">
               <div className="preview">
                 <img
                   src={renderedImage || sourceImage}
