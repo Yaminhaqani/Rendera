@@ -5,6 +5,9 @@ export const HOSTING_DOMAIN_SUFFIX = ".puter.site";
 //Converts number to base 36 (0–9 + a–z). Makes it shorter and URL-friendly
 export const createHostingSlug = () => `rendera-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 
+
+//: value is string: This is called a type predicate. It’s NOT a normal return type like boolean. It means:
+//If this function returns true, then treat value as a string
 export const isHostedUrl = (value: unknown): value is string =>
     typeof value === "string" && value.includes(HOSTING_DOMAIN_SUFFIX);
 

@@ -2,6 +2,7 @@ import puter from "@heyputer/puter.js";
 import { createHostingSlug, fetchBlobFromUrl, getHostedUrl, getImageExtension, HOSTING_CONFIG_KEY, imageUrlToPngBlob, isHostedUrl } from "./utils";
 
 export const getOrCreateHostingConfig = async (): Promise<HostingConfig | null> => {
+  //only 1 domain is created and everything is saved there
     const existing = (await puter.kv.get(
       HOSTING_CONFIG_KEY,
     )) as HostingConfig | null;
